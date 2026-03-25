@@ -1,0 +1,30 @@
+1. Initial Setup
+Before using slackpkg for the first time, you must select a mirror. 
+
+    Edit the mirrors file (as root): vi /etc/slackpkg/mirrors.
+    Uncomment exactly one mirror that matches your version (e.g., 15.0) and architecture (e.g., x86_64).
+    Update the GPG key to verify package integrity: slackpkg update gpg. 
+
+2. Standard Update Routine
+Once configured, run the following commands in order as the root user to keep your system current: 
+
+    Sync package indexes:
+    slackpkg update
+    This downloads the latest list of available packages but does not install them.
+    
+	Install new official packages:
+    slackpkg install-new
+    Ensures any new dependencies or tools added to the official distribution are installed.
+    
+	Upgrade existing packages:
+    slackpkg upgrade-all
+    This will prompt a menu showing all available upgrades. You can deselect packages if needed.
+    
+	Clean the system (Optional):
+    slackpkg clean-system
+    Removes packages that are no longer part of the official Slackware tree. 
+
+3. Post-Update Tasks
+
+    Kernel Updates: If the kernel was upgraded, you must update your bootloader (e.g., running lilo or updating your EFI configuration) before rebooting to ensure the new kernel is bootable.
+    Configuration Files: Slackware installs new configuration files with a .new extension (e.g., rc.conf.new). Run slackpkg new-config to review and merge these changes. 
