@@ -12,15 +12,30 @@ function initial_setup {
 
         version=$(grep -oP '[0-9]+\.[0-9]+' /etc/slackware-version)
 
-        mirrors_path="/etc/slackpkg/mirrors"
+        mirrors_file="/etc/slackpkg/mirrors"
 
-        if [[ ! -d "$mirrors_path" ]]; then
-                echo "Path does not exist"
+        if [[ ! -e "$mirrors_file" ]]; then
+                echo "File does not exist"
                 exit 1
         fi
 
-        sed -i "/^#.*slackware\\(64\\)\\?-$version/s/^#//" "$mirrors_path"
+        sed -i "/^#.*slackware\\(64\\)\\?-$version/s/^#//" "$mirrors_file"
+
+}
+
+function update {
+
+        updates=("slackpkg update" "slackpkg install-new" "slackpkg upgrade-all" "slackpkg clean-system")
+
+        for i in "${updates[@]}"; do
+                if ! eval "$i"; then
+                        echo "'$i' has failed..."
+                else
+                        echo "'$i' was succuessful..."
+                fi
+        done
 
 }
 
 initial_setup
+update
