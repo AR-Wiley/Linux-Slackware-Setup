@@ -16,7 +16,7 @@ function System_Update {
                 "apt-get autoremove -y")
 
         for i in "${updates[@]}"; do
-                if ! eval "$i"; then
+                if ! bash -c "$i"; then
                         echo "'$i' Failed"
                         exit 1
                 fi
