@@ -7,6 +7,7 @@ if [[ "$EUID" -ne 0 ]]; then
         exit 1
 fi
 
+
 function System_Update {
 
         local updates=("apt-get update"
@@ -25,6 +26,7 @@ function System_Update {
         echo "Update Completed"
 }
 
+
 function set_hostname {
 
         local hostname=$1
@@ -39,8 +41,8 @@ function set_hostname {
         truncate -s 0 "hostname_file"
 
         echo $1 >> "hostname_file"
-
 }
+
 
 function set_ip_address {
 
@@ -55,6 +57,4 @@ function set_ip_address {
                 echo "Inet File does not exist.."
                 exit 1
         fi
-
-
 }
