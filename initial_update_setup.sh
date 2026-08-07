@@ -30,7 +30,7 @@ function update {
                 if ! eval "$i"; then
                         echo "'$i' has failed..."
                 else
-                        echo "'$i' was succuessful..."
+                        echo "'$i' was successful..."
                 fi
         done
 
