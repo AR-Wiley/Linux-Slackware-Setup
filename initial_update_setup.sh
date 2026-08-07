@@ -8,11 +8,12 @@ if [[ "$EUID" -ne 0 ]]; then
         exit 1
 fi
 
+ mirrors_file="/etc/slackpkg/mirrors"
+ updates=("slackpkg update" "slackpkg install-new" "slackpkg upgrade-all" "slackpkg clean-system")
+
 function initial_setup {
 
-        version=$(grep -oP '[0-9]+\.[0-9]+' /etc/slackware-version)
-
-        mirrors_file="/etc/slackpkg/mirrors"
+        local version=$(grep -oP '[0-9]+\.[0-9]+' /etc/slackware-version)
 
         if [[ ! -e "$mirrors_file" ]]; then
                 echo "File does not exist"
@@ -24,8 +25,6 @@ function initial_setup {
 }
 
 function update {
-
-        updates=("slackpkg update" "slackpkg install-new" "slackpkg upgrade-all" "slackpkg clean-system")
 
         for i in "${updates[@]}"; do
                 if ! eval "$i"; then
