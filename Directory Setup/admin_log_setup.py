@@ -1,7 +1,14 @@
 import os
+import sys
 
 rootDir = "/var/log/Sys_Admin"
 subDir = ["Updates", "Software", "Downloads", "Users", "Scripts", "Admin"]
+
+def check_root():
+
+        if os.getuid() != 0:
+                print("This sript must be run as root", file=sys.stderr)
+                sys.exit(1)
 
 def rootDirValidation(path):
         if not os.path.exists(path):
@@ -30,5 +37,6 @@ def subDirValidation(rootDir, subDir):
                 else:
                         print(f"Sub directory {i} already exists")
 
+check_root()
 rootDirValidation(rootDir)
 subDirValidation(rootDir,subDir)
