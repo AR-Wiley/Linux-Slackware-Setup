@@ -37,6 +37,7 @@ def subDirValidation(rootDir, subDir):
                 else:
                         print(f"Sub directory {i} already exists")
 
+
 check_root()
 rootDirValidation(rootDir)
 subDirValidation(rootDir,subDir)
