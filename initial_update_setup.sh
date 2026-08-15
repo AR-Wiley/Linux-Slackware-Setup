@@ -20,7 +20,8 @@ function initial_setup {
                 exit 1
         fi
 
-        sed -i "/^#.*slackware\\(64\\)\\?-$version/s/^#//" "$mirrors_file"
+        sed -i 's|^[^#]|#&|' "$mirrors_file"
+        sed -i "/slackware\\(64\\)\\?-$version/{s/^#//;q;}" "$mirrors_file"
 
 }
 
