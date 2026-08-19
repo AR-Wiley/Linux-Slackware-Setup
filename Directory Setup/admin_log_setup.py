@@ -11,6 +11,7 @@ def check_root():
                 sys.exit(1)
 
 def rootDirValidation(path):
+        
         if not os.path.exists(path):
                 print("Root path does not exist...")
                 print("Creating path...")
@@ -25,6 +26,7 @@ def rootDirValidation(path):
 
 
 def subDirValidation(rootDir, subDir):
+        
         for i in subDir:
                 if not os.path.exists(os.path.join(rootDir, i)):
                         print("Sub directory path does not exist...")
