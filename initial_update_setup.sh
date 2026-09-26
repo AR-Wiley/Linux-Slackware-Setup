@@ -2,14 +2,16 @@
 
 set -euo pipefail
 
+mirrors_file="/etc/slackpkg/mirrors"
+updates=("slackpkg update" "slackpkg install-new" "slackpkg upgrade-all" "slackpkg clean-system")
 
-if [[ "$EUID" -ne 0 ]]; then
-        echo "You must be root to run this script...."
-        exit 1
-fi
+function validate_root {
 
- mirrors_file="/etc/slackpkg/mirrors"
- updates=("slackpkg update" "slackpkg install-new" "slackpkg upgrade-all" "slackpkg clean-system")
+        if [[ "$EUID" -ne 0 ]]; then
+                echo "You must be root to run this script...."
+                exit 1
+        fi
+}
 
 function initial_setup {
 
@@ -37,5 +39,6 @@ function update {
 
 }
 
+validate_root
 initial_setup
 update
