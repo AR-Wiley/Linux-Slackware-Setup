@@ -17,7 +17,7 @@ def rootDirValidation(path):
                 print("Creating path...")
                 try:
                         os.makedirs(path)
-                        print(f"{path} had been created")
+                        print(f"{path} has been created")
                         print(path)
                 except Exception as e:
                         print(f"An error has occured: {e}")
