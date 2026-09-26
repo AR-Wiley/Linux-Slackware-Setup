@@ -1,11 +1,8 @@
-
 import os
 import sys
 
-
 home_dir = "/home"
-
-root_dir =["Scripts", "Text", "Data", "Users", "Downloads", "Videos", "Pictures"]
+root_dir = ["Scripts", "Text", "Data", "Users", "Downloads", "Videos", "Pictures"]
 
 def check_root():
 
