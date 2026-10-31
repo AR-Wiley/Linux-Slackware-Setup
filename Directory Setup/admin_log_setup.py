@@ -2,7 +2,9 @@ import os
 import sys
 
 rootDir = "/var/log/Sys_Admin"
-logFiles = ["updates.log", "installs.log", "removals.log", "users.log", "scripts.log", "security.log", "network.log"]
+logFiles = ["updates.log", "installs.log", 
+            "removals.log", "users.log", 
+            "scripts.log", "security.log", "network.log"]
 
 def check_root():
 
