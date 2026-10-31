@@ -28,7 +28,7 @@ def rootDirValidation(path):
     else:
         print(path)
 
-def subDirValidation(path, files):
+def logFileValidation(path, files):
         
     for i in files:
         file_path = os.path.join(path, i)
@@ -47,4 +47,4 @@ def subDirValidation(path, files):
 
 check_root()
 rootDirValidation(rootDir)
-subDirValidation(rootDir,logFiles)
+logFileValidation(rootDir,logFiles)
