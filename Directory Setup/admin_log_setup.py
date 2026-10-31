@@ -2,7 +2,7 @@ import os
 import sys
 
 rootDir = "/var/log/Sys_Admin"
-subDir = ["Updates", "Software", "Downloads", "Users", "Scripts", "Admin"]
+logFiles = ["updates.log", "installs.log", "removals.log", "users.log", "scripts.log", "security.log", "network.log"]
 
 def check_root():
 
@@ -25,21 +25,23 @@ def rootDirValidation(path):
                 print(path)
 
 
-def subDirValidation(rootDir, subDir):
+def subDirValidation(path, files):
         
-        for i in subDir:
-                if not os.path.exists(os.path.join(rootDir, i)):
-                        print("Sub directory path does not exist...")
-                        print("Creating sub directory...")
-                        try:
-                                os.makedirs(os.path.join(rootDir, i))
-                                print(f"Sub directory {i} created successfully")
-                        except Exception as e:
-                                print(f"An error hsa occurred: {e}")
-                else:
-                        print(f"Sub directory {i} already exists")
+        for i in files:
+                file_path = os.path.join(path, i)
+                if not os.path.isfile(file_path):
+                    print(f"Log file {i} does not exist")
+                    print(f"Creating file {i}")
+                    try:
+                        with open(file_path, "x") as f:
+                            f.write(f"{i} ceated")
+                        print(f"Created: {i}")
+                    except Exception as e:
+                        print(f"An error has occured: {e}")
+                else: 
+                    print(f"File {i} already exists")
 
 
 check_root()
 rootDirValidation(rootDir)
-subDirValidation(rootDir,subDir)
+subDirValidation(rootDir,logFiles)
