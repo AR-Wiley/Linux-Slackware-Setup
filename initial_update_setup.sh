@@ -10,8 +10,7 @@ function validate_root {
         if [[ "$EUID" -ne 0 ]]; then
                 echo "You must be root to run this script...."
                 exit 1
-         fi
-         
+         fi         
 }
 
 function initial_setup {
@@ -25,7 +24,6 @@ function initial_setup {
 
         sed -i 's|^[^#]|#&|' "$mirrors_file"
         sed -i "/slackware\\(64\\)\\?-$version/{s/^#//;q;}" "$mirrors_file"
-
 }
 
 function update {
@@ -37,7 +35,6 @@ function update {
                         echo "'$i' was successful..."
                 fi
         done
-
 }
 
 validate_root
