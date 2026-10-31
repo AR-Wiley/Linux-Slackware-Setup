@@ -18,7 +18,6 @@ def homeDirValidation(path):
         print(f"{home_dir} does not exist...")
         sys.exit(1)
 
-
 def rootDirValidation(homeDir, rootDir):
 
     for i in rootDir:
