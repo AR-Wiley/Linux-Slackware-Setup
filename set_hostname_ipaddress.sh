@@ -2,21 +2,25 @@
 
 set -euo pipefail
 
-if [[ "$EUID" -ne 0 ]]; then
-        echo "You must be root to run this script..."
-        exit 1
-fi
+updates=("apt-get update"
+        "apt-get upgrade -y"
+        "apt-get dist-upgrade -y"
+        "apt-get clean"
+        "apt-get autoremove -y")
 
+function validate_root() {
+
+        if [[ $EUID -ne 0 ]]; then
+                echo "This script must run as root" >&2
+                exit 1
+        fi
+}
 
 function System_Update {
 
-        local updates=("apt-get update"
-                "apt-get upgrade -y"
-                "apt-get dist-upgrade -y"
-                "apt-get clean"
-                "apt-get autoremove -y")
+        local update="$1"
 
-        for i in "${updates[@]}"; do
+        for i in "${update[@]}"; do
                 if ! bash -c "$i"; then
                         echo "'$i' Failed"
                         exit 1
